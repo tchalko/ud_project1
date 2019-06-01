@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Create Users</h1>
-
+    <div class="row">
     {!! Form::open(['method'=>'POST', 'action'=>'AdminUsersController@store', 'files'=>true]) !!}
 
         {{ csrf_field() }}
@@ -34,8 +34,10 @@
         <div class="form-group">
             {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
         </div>
+    {!! Form::close() !!}
+    </div>
 
-        {!! Form::close() !!}
-
+    <div class="row">
         @include('includes.form_error')
+    </div>
 @stop
