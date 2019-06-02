@@ -1,6 +1,12 @@
 @extends('layouts.admin')
 
 @section('content')
+
+    @if(Session::has('deleted_category'))
+        {{--<p class="bg-danger">{{session('deleted_category')}}</p>--}}
+        <p class="bg-danger">{{session('deleted_category')}}</p>
+    @endif
+
     <h1>Categories</h1>
 
     <div class="col-sm-6">
@@ -35,7 +41,7 @@
                 @foreach($categories as $category)
                     <tr>
                         <td>{{$category->id}}</td>
-                        <td>{{$category->name}}</td>
+                        <td><a href="{{route('admin.categories.edit', $category->id)}}">{{$category->name}}</a></td>
                         <td>{{$category->created_at->diffForHumans()}}</td>
                         <td>{{$category->updated_at->diffForHumans()}}</td>
                     </tr>

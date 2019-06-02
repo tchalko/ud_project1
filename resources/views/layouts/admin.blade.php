@@ -160,7 +160,7 @@
                             </li>
 
                             <li>
-                                <a href="{{route('admin.categories.create')}}">Create Category</a>
+                                <a href="{{route('admin.categories.index')}}">Create Category</a>
                             </li>
 
                         </ul>
