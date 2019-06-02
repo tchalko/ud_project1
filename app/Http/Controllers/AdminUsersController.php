@@ -101,7 +101,7 @@ class AdminUsersController extends Controller
     public function update(UsersEditRequest $request, $id)
     {
         //
-        $user =User::findOrFail($id);
+        $user = User::findOrFail($id);
 
         if (trim($request->password) == '') {
             $input = $request->except('password');
