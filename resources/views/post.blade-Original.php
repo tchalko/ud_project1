@@ -75,8 +75,8 @@
             {{$comment->body}}
         @if(count($comment->replies) > 0)
         @foreach($comment->replies as $reply)
-            @if($reply->is_active==1)
-            <!-- Nested Comment... i.e. REPLY -->
+
+            <!-- Nested Comment -->
             <div id="nested-comment" class="media">
                 <a class="pull-left" href="#">
                     <img height="64" class="media-object" src="{{$reply->file}}" alt="">
@@ -89,7 +89,7 @@
                 </div>
                 <div class="comment-reply-container">
                     <button class="toggle-reply btn btn-primary pull-right">Reply</button>
-                    <div class="comment-reply col-sm-9">
+                    <div class="comment-reply">
                     {!! Form::open(['method'=>'POST', 'action'=>'CommentRepliesController@createReply']) !!}
                         <div class="form-group">
                             <input type="hidden" name="comment_id" value="{{$comment->id}}">
@@ -103,27 +103,8 @@
                     </div>
                 </div>
             <!-- End Nested Comment -->
-            </div>
-            @endif
+        </div>
         @endforeach
-        @else
-                <!-- if there weren't any replies, at least put the button out there so
-                     someone can make that first reply -->
-                <div class="comment-reply-container">
-                <button class="toggle-reply btn btn-primary pull-right">Reply</button>
-                <div class="comment-reply col-sm-9">
-                    {!! Form::open(['method'=>'POST', 'action'=>'CommentRepliesController@createReply']) !!}
-                    <div class="form-group">
-                        <input type="hidden" name="comment_id" value="{{$comment->id}}">
-                        {!! Form::label('body', 'Reply:') !!}
-                        {!! Form::textarea('body', null, ['class'=>'form-control', 'rows'=>2]) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::submit('Submit', ['class'=>'btn btn-primary']) !!}
-                    </div>
-                    {!! Form::close() !!}
-                </div>
-            </div>
         @endif
     </div>
 </div>

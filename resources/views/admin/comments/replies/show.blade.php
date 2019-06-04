@@ -2,8 +2,8 @@
 
 @section('content')
 
-    @if(count($comments) > 0)
-        <h1>Comments</h1>
+    @if(count($replies) > 0)
+        <h1>Replies</h1>
 
         <table class="table">
             <thead>
@@ -16,19 +16,19 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($comments as $comment)
+            @foreach($replies as $reply)
                 <tr>
-                    <td>{{$comment->id}}</td>
-                    <td>{{$comment->author}}</td>
-                    <td>{{$comment->email}}</td>
-                    <td>{{$comment->file}}</td>
-                    <td>{{$comment->body}}</td>
-                    {{--<td><a href="{{route('home.post',$comment->post->id)}}">View Post</a></td>--}}
+                    <td>{{$reply->id}}</td>
+                    <td>{{$reply->author}}</td>
+                    <td>{{$reply->email}}</td>
+                    <td>{{$reply->file}}</td>
+                    <td>{{$reply->body}}</td>
+                    <td><a href="{{route('home.post',$reply->comment->post->id)}}">View Post</a></td>
 
                     <td>
-                        {!! Form::open(['method'=>'PATCH', 'action'=>['PostCommentsController@update', $comment->id]]) !!}
+                        {!! Form::open(['method'=>'PATCH', 'action'=>['CommentRepliesController@update', $reply->id]]) !!}
 
-                        @if($comment->is_active == 1)
+                        @if($reply->is_active == 1)
                             <input type="hidden" name="is_active" value="0">
                             {!! Form::submit('Un-approve', ['class'=>'btn btn-danger']) !!}
                         @else
@@ -38,9 +38,9 @@
                         {!! Form::close() !!}
                     </td>
                     <td>
-                        {!! Form::open(['method'=>'DELETE', 'action'=>['PostCommentsController@destroy', $comment->id]]) !!}
+                        {!! Form::open(['method'=>'DELETE', 'action'=>['CommentRepliesController@destroy', $reply->id]]) !!}
                         <div class="form-group">
-                            {!! Form::submit('Delete Comment', ['class'=>'btn btn-danger']) !!}
+                            {!! Form::submit('Delete Reply', ['class'=>'btn btn-danger']) !!}
                         </div>
                         {!! Form::close() !!}
                     </td>
@@ -49,7 +49,7 @@
             </tbody>
         </table>
     @else
-        <h1 class="text-center">No Comments</h1>
+        <h1 class="text-center">No Replies</h1>
     @endif
 
 @stop
