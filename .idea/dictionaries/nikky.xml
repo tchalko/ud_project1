@@ -2,8 +2,10 @@
   <dictionary name="nikky">
     <words>
       <w>bcrypt</w>
+      <w>endforeach</w>
       <w>fillable</w>
       <w>nikky</w>
+      <w>sluggable</w>
     </words>
   </dictionary>
 </component>
