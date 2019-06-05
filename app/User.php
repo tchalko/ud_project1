@@ -24,25 +24,23 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function role(){
+    public function role()
+    {
         return $this->belongsTo('App\Role');
     }
 
-    public function photo() {
+    public function photo()
+    {
         return $this->belongsTo('App\Photo');
     }
 
-    public function posts() {
+    public function posts()
+    {
         return $this->hasMany('App\Post');
     }
 
-//    public function setPasswordAttribute($password){
-//        if(!empty($password)){
-//            $this->attributes['password'] = bcrypt($password);
-//        }
-//    }
-
-    public function isAdmin(){
+    public function isAdmin()
+    {
         if($this->role){
             if($this->role->name == "administrator" && $this->is_active) {
                 return true;
@@ -51,6 +49,11 @@ class User extends Authenticatable
         return false;
     }
 
-
+    public function getGravatarAttribute()
+    {
+        $hash = md5(strtolower(trim($this->attributes['email'])));
+        return "http://www.gravatar.com/avatar/$hash";
+//        return "https://s.gravatar.com/avatar/$hash";
+    }
 
 }

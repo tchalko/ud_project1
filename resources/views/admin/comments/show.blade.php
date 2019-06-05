@@ -23,7 +23,7 @@
                     <td>{{$comment->email}}</td>
                     <td>{{$comment->file}}</td>
                     <td>{{$comment->body}}</td>
-                    {{--<td><a href="{{route('home.post',$comment->post->id)}}">View Post</a></td>--}}
+                    <td><a href="{{route('home.post',$post->slug)}}">View Post</a></td>
 
                     <td>
                         {!! Form::open(['method'=>'PATCH', 'action'=>['PostCommentsController@update', $comment->id]]) !!}
