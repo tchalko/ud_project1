@@ -53,6 +53,9 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
+                @if (Auth::user()->isAdmin())
+                    <li><a href="{{ url('/admin') }}">Admin page</a></li>
+                @endif
             </ul>
         </div>
         <!-- /.navbar-collapse -->
