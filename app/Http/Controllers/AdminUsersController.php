@@ -113,9 +113,11 @@ class AdminUsersController extends Controller
             //Finds the old picture and deletes it
             if ($user->photo_id != null)
             {
-                $photo = Photo::findOrFail($user->photo_id);
-                unlink(public_path() . $photo->file);
-                $photo->delete();
+                $photo = Photo::find($user->photo_id);
+                if ($photo) {
+                    unlink(public_path() . $photo->file);
+                    $photo->delete();
+                }
             }
             $name = time() . $file->getClientOriginalName();
             $file->move('images', $name);

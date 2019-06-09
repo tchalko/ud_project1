@@ -100,9 +100,11 @@ class AdminPostsController extends Controller
             $post = Post::findOrFail($id);
             if ($post->photo_id != null)
             {
-                $photo = Photo::findOrFail($post->photo_id);
-                unlink(public_path() . $photo->file);
-                $photo->delete();
+                $photo = Photo::find($post->photo_id);
+                if ($photo) {
+                    unlink(public_path() . $photo->file);
+                    $photo->delete();
+                }
             }
             $name = time().$file->getClientOriginalName();
             $file->move('images', $name);

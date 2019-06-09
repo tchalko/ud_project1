@@ -57,15 +57,16 @@ Route::group(['middleware'=>'admin'], function(){
         'show'  =>'admin.categories.show'
 
     ]]);
+
     Route::resource('admin/media', 'AdminMediasController', ['names'=>[
         'index' =>'admin.media.index',
         'create'=>'admin.media.create',
         'store' =>'admin.media.store',
         'edit'  =>'admin.media.edit',
-        'destroy' =>'admin.media.destroy',
-        'update'=>'admin.media.update',
-        'show'  =>'admin.media.show'
+        'destroy' =>'admin.media.destroy'
     ]]);
+    Route::delete('admin/delete/media', 'AdminMediasController@deleteMedia');
+
     Route::get('admin/media/upload', ['as'=>'admin.media.upload']);
 
     Route::resource('admin/comments', 'PostCommentsController', ['names'=>[
